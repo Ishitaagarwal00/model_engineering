@@ -1,0 +1,8 @@
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+notebooks/catboost_info/
+models/.ipynb_checkpoints/
+.idea/
+myenv/
+catboost_info/
+__pycache__/
