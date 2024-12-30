@@ -1,3 +1,4 @@
+.streamlit/secrets.toml
 .ipynb_checkpoints/
 notebooks/.ipynb_checkpoints/
 notebooks/catboost_info/
@@ -6,3 +7,4 @@ models/.ipynb_checkpoints/
 myenv/
 catboost_info/
 __pycache__/
+ks_test_results.csv

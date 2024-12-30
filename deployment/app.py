@@ -3,6 +3,9 @@ import joblib
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import psycopg2
+import json
+
 
 # Models paths
 model_paths = {
@@ -32,6 +35,28 @@ features = [
     'perimeter_worst', 'radius_mean', 'radius_se', 'radius_worst',
     'smoothness_worst', 'symmetry_worst', 'texture_mean', 'texture_worst'
 ]
+
+# PostgreSQL DSN
+dsn = st.secrets["DSN"]
+
+# Connect to PostgreSQL database
+conn = psycopg2.connect(dsn)
+cursor = conn.cursor()
+
+# Create table to store predictions and input data
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS predictions (
+    id SERIAL PRIMARY KEY,
+    model_name VARCHAR(50),
+    prediction VARCHAR(10),
+    prediction_proba_benign FLOAT,
+    prediction_proba_malignant FLOAT,
+    input_data JSONB,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+""")
+# Commit table creation
+conn.commit()
 
 # Create two columns for visualizations
 left_column, right_column = st.columns(2)
@@ -87,14 +112,21 @@ if st.sidebar.button("Predict"):
     with right_column:
         st.subheader("Prediction Results")
         if prediction[0] == 1:
+            prediction_result = "Malignant"
             st.success("The tumor is **Malignant**.")
         else:
+            prediction_result = "Benign"
             st.success("The tumor is **Benign**.")
 
         if prediction_proba is not None:
+            prediction_proba_benign = prediction_proba[0][0]
+            prediction_proba_malignant = prediction_proba[0][1]
             # Display the prediction probabilities for both classes (Benign and Malignant)
-            st.write(f"Prediction Probability: {prediction_proba[0][0]:.2f} (Benign)")
-            st.write(f"Prediction Probability: {prediction_proba[0][1]:.2f} (Malignant)")
+            st.write(f"Prediction Probability: {prediction_proba_benign:.2f} (Benign)")
+            st.write(f"Prediction Probability: {prediction_proba_malignant:.2f} (Malignant)")
+        else:
+            prediction_proba_benign = None
+            prediction_proba_malignant = None
 
         # Logistic Regression Explanation
         if selected_model_name == 'Logistic Regression':
@@ -138,5 +170,22 @@ if st.sidebar.button("Predict"):
             plt.title('Feature Contributions to the Malignant Prediction (Tree-Based Models)')
             st.pyplot(plt.gcf())
 
+    # Store prediction and input data in PostgreSQL
+    cursor.execute(
+        """
+        INSERT INTO predictions (model_name, prediction, prediction_proba_benign, prediction_proba_malignant, input_data)
+        VALUES (%s, %s, %s, %s, %s);
+        """,
+        (
+            selected_model_name,
+            prediction_result,
+            prediction_proba_benign,
+            prediction_proba_malignant,
+            json.dumps(input_data),
+        )
+    )
+    # Commit the data insertion
+    conn.commit()
 
-
+# Close database connection
+conn.close()
