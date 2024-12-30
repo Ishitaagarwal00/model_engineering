@@ -179,8 +179,8 @@ if st.sidebar.button("Predict"):
         (
             selected_model_name,
             prediction_result,
-            prediction_proba_benign,
-            prediction_proba_malignant,
+            float(prediction_proba_benign) if prediction_proba_benign is not None else None,
+            float(prediction_proba_malignant) if prediction_proba_malignant is not None else None,
             json.dumps(input_data),
         )
     )
