@@ -5,36 +5,35 @@ This repository hosts a project for predicting breast cancer malignancy using ma
 ---
 
 ## **Table of Contents**
-1. [Objective](#objective)  
-2. [Project Overview](#project-overview)  
-3. [Repository Structure](#repository-structure)  
-4. [Methodology](#methodology)  
-   - Data Exploration  
-   - Feature Engineering  
-   - Model Development  
-   - Model Evaluation and Selection  
-   - Interpretability Analysis  
-   - Error Analysis  
-5. [Application Deployment](#application-deployment)  
-6. [How to Run the Project](#how-to-run-the-project)  
+1. [Objective](#objective)
+2. [Project Overview](#project-overview)
+3. [Repository Structure](#repository-structure)
+4. [Methodology](#methodology)
+   - Data Exploration
+   - Feature Engineering
+   - Model Development
+   - Model Evaluation and Selection
+   - Interpretability Analysis
+   - Error Analysis
+5. [Application Deployment](#application-deployment)
+6. [How to Run the Project](#how-to-run-the-project)
 
 ---
 
-## **Objective**  
+## **Objective**
 
 To develop a machine learning-based tool to classify breast tumors as benign or malignant with an F1-score exceeding 0.95 while integrating interpretability techniques for actionable insights. Additionally, predictions are stored in a PostgreSQL database hosted on **Neon**, and a data drift detection mechanism runs monthly to retrain the model if drift is detected.
 
-
 ---
 
 
-## **Project Overview**  
+## **Project Overview**
 
-Breast cancer is among the most diagnosed cancers worldwide, and early detection is critical for improving patient outcomes. This project emphasizes:  
-- High-performing models such as Gradient Boosting, LightGBM, XGBoost and Interpretable models like Logistic Regression.  
-- Interpretability analysis for gaining insights into model predictions.  
-- Deployment into Streamlit Cloud and Docker for accessibility.  
-- A PostgreSQL database hosted on **Neon** to store predictions made by the app.  
+Breast cancer is among the most diagnosed cancers worldwide, and early detection is critical for improving patient outcomes. This project emphasizes:
+- High-performing models such as Gradient Boosting, LightGBM, XGBoost and Interpretable models like Logistic Regression.
+- Interpretability analysis for gaining insights into model predictions.
+- Deployment into Streamlit Cloud and Docker for accessibility.
+- A PostgreSQL database hosted on **Neon** to store predictions made by the app.
 - A monthly data drift detection mechanism that triggers model retraining if drift is detected.
 
 ---
@@ -43,19 +42,19 @@ Breast cancer is among the most diagnosed cancers worldwide, and early detection
 
 The project follows a structured workflow from data exploration to model deployment, including interpretability analysis and data drift detection for model retraining. The diagram below illustrates the key steps in the project pipeline:
 
-![Workflow Diagram](reports/figures/workflow.png) 
+![Workflow Diagram](reports/figures/workflow.png)
 
 ---
 
-## **Repository Structure**  
+## **Repository Structure**
 
 ```
-data/  
+data/
   processed/  # Processed dataset after data exploration and feature engineering
   raw/ Original dataset
   
-deployment/  
-  models/  # Models for the deployed app  
+deployment/
+  models/  # Models for the deployed app
   app.py   # Streamlit app for the deployed models
   Dockerfile  # Docker configuration
   requirements_app.txt  # Dependencies for Docker
@@ -69,9 +68,9 @@ notebooks/  # Jupyter notebooks for data exploration, feature engineering, model
     - 04_models_interpretability.ipynb # Interpretability analysis(Including SHAP and LIME)
     - 05_error_analysis.ipynb # Error analysis
 
-reports/  
-  figures/  # Generated visualizations  
-  metrics/  # Metrics visualizations  
+reports/
+  figures/  # Generated visualizations
+  metrics/  # Metrics visualizations
 
 py_scripts/  # Python scripts
     - data_drift_monitoring.py # Data drift detection and model retraining
@@ -84,9 +83,7 @@ requirements.txt  # Simplified requirements for deployment on Streamlit Cloud.
 ---
 
 ## **Methodology**
-
----
-### **CRISP-DM Framework** 
+### **CRISP-DM Framework**
 
 The methodology for this project follows the CRISP-DM (Cross-Industry Standard Process for Data Mining) framework, which includes the following phases:
 
@@ -103,60 +100,62 @@ The methodology for this project follows the CRISP-DM (Cross-Industry Standard P
 6. **Deployment**: The selected models were deployed using a Streamlit app on Streamlit cloud and also an Image pushed to Docker Hub. The predictions made by the app are stored in a PostgreSQL database for further monitoring and retraining. A data drift detection workflow ensures that the model remains accurate over time.
 
 ---
- 
 
 
-### **1. Data Exploration**  
+### **1. Data Exploration**
 
 Check basic statistics and null values in the dataset along with:
-- **Diagnosis Distribution**: Explored the dataset distribution of benign vs. malignant cases.  
-  ![Diagnosis Distribution](reports/figures/diagnosis_distribution.png)  
+- **Diagnosis Distribution**: Explored the dataset distribution of benign vs. malignant cases.
+  ![Diagnosis Distribution](reports/figures/diagnosis_distribution.png)
 
-- **Feature Distributions by Diagnosis**: Boxplots grouped by 'diagnosis'.  
-  ![Features Boxplot](reports/figures/features_boxplot_by_diagnosis.png)  
+- **Boxplots grouped by 'diagnosis'**: Visualized feature distributions for benign and malignant cases.
+  ![Features Boxplot](reports/figures/features_boxplot_by_diagnosis.png)
 
-- **Correlation Analysis**: Visualized feature relationships with heatmaps and correlation to the target variable.  
-  ![Correlation Heatmap](reports/figures/correlation_heatmap.png)  
-  ![Feature Correlation with Target](reports/figures/features_correlation_TargetVariable.png)  
+- **Correlation Analysis**: Visualized feature relationships with heatmaps and correlation to the target variable.
+  ![Correlation Heatmap](reports/figures/correlation_heatmap.png)
+  ![Feature Correlation with Target](reports/figures/features_correlation_TargetVariable.png)
 
-- **PCA Visualization**: Reduced dimensionality for visualization in 2D and 3D.  
-  ![PCA 2D](reports/figures/PCA_2D.png)  
-  ![PCA 3D](reports/figures/PCA_3D.png)  
+- **PCA Visualization**: Reduced dimensionality for visualization in 2D and 3D.
+  - PCA 2D:
 
-### **2. Feature Engineering**  
+    ![PCA 2D](reports/figures/PCA_2D.png)
+  - PCA 3D:
 
-- Applied preprocessing and feature selection techniques:  
-  - Scaled features using standardization.  
-  - Removed low-variance features.  
-  - Selected important features using:  
-    - Random Forest Feature Importance.  
-    - Mutual Information.  
-    - ANOVA F-Test.  
-    - Kruskal-Wallis H Test.  
+    ![PCA 3D](reports/figures/PCA_3D.png)
 
-- **Feature Importance Analysis**: Highlighted the most impactful features.  
-  ![Feature Importance](reports/figures/feature_importance.png)  
+### **2. Feature Engineering**
 
-### **3. Model Development**  
+- Applied preprocessing and feature selection techniques:
+  - Scaled features using standardization.
+  - Removed low-variance features.
+  - Selected important features using:
+    - Random Forest Feature Importance.
+    - Mutual Information.
+    - ANOVA F-Test.
+    - Kruskal-Wallis H Test.
 
-- Trained and evaluated multiple machine learning models:  
+- **Feature Importance Analysis**: Highlighted the most impactful features.
+  ![Feature Importance](reports/figures/feature_importance.png)
+
+### **3. Model Development**
+
+- Trained and evaluated multiple machine learning models:
   - Classification Models: Logistic Regression, Decision Tree, Random Forest, Gradient Boosting, XGBoost, LightGBM, CatBoost, SVM, k-NN, Naive Bayes, AdaBoost, Bagging, Extra Trees, Voting, Gaussian Process.
   - Neural Networks: Artificial Neural Network (ANN), and Multi-Layer Perceptron (MLP).
-- Select models achieving F1-scores above 0.96 for further analysis.  
+- Select models achieving F1-scores above 0.96 for further analysis.
 
-- **Performance Comparison**: Compared metrics across models.  
-  ![Performance Comparison](reports/metrics/F1-Score.png)  
+- **Performance Comparison**: Compared metrics across models.
+  ![Performance Comparison](reports/metrics/F1-Score.png)
 
+### **4. Interpretability Analysis**
 
-### **4. Interpretability Analysis**  
-
-- Used **SHAP** and **LIME** to perform interpretability analysis:  
+- Used **SHAP** and **LIME** to perform interpretability analysis:
   - SHAP for Tree-Based Models and ANN.
-  - LIME for general models.  
+  - LIME for general models.
 
-### **5. Model Evaluation and Selection**  
+### **5. Model Evaluation and Selection**
 
-- The models for deployment were chosen based on a combination of interpretability and performance. This approach ensures that high-performing models also provide insights into their predictions, which is critical for clinical applications where understanding the decision-making process is essential.
+- The models for the next step were chosen based on a combination of interpretability and performance. This approach ensures that we have high-performing models along with simple interpretable models, which is critical for clinical applications where understanding the decision-making process is essential.
 - Selected Models:
   - Logistic Regression
   - Gradient Boosting
@@ -165,38 +164,30 @@ Check basic statistics and null values in the dataset along with:
   - CatBoost
 
 
-### **6. Error Analysis**  
+### **6. Error Analysis**
 
 - Conducted a thorough error analysis, inspecting misclassified cases to identify model weaknesses.
-- **Confusion Matrices**: Evaluated model predictions on the test set.  
-  ![Confusion Matrices](reports/metrics/confusion_matrices.png) 
+- **Confusion Matrices**: Evaluated model predictions on the test set.
+
+  ![Confusion Matrices](reports/metrics/confusion_matrices.png)
 
 The models evaluated (Logistic Regression, Gradient Boosting, LightGBM, XGBoost, and CatBoost) show high accuracy and excellent predictive performance on the test set.
 
+#### **Observations**
+1. **Overall Performance**:
+   - All models perform well, with high F1-Scores, Accuracy, and ROC-AUC values.
+   - Differences in performance are marginal, but minor trade-offs exist between precision and recall.
 
---- 
+2. **Key Trade-Offs**:
+   - **Logistic Regression and LightGBM**: Perfect precision but slightly lower recall, making them conservative predictors.
+   - **Gradient Boosting, XGBoost, and CatBoost**: Perfect recall but slightly reduced precision, better for high-recall use cases like avoiding missed Malignant cases.
 
-### **Data Drift Detection and Model Retraining**  
+3. **Confusion Matrix Insights**:
+   - Logistic Regression and LightGBM produce the fewest misclassifications, with only one false negative.
+   - Gradient Boosting has more false positives but no false negatives, ideal for minimizing missed critical cases.
 
-The project includes a **data drift detection system** that monitors for significant changes in the input data distribution every month. A **Kolmogorov-Smirnov (KS) test** is used to compare the cumulative distributions of continuous feature values in the current data against the original training dataset. The KS test measures the maximum difference between two cumulative distributions and determines whether they are statistically significantly different.
+#### **For Deployment**:
 
-If the test detects significant differences (p-value < 0.05) in more than 20% of the features, the system flags the model for retraining to adapt to the new data distribution. This ensures that the model remains accurate and robust in real-world scenarios.
-
-#### **Steps for Drift Detection and Mitigation**:
-1. **Data Monitoring**: Each month, the system compares incoming data distributions against the training data using the KS test for continuous features.
-2. **Drift Detection**: If drift is detected in more than 20% of the features, the system marks the model for retraining.
-3. **Retraining**: Once flagged, the model is retrained using a combination of new labeled data and the original training data to avoid overfitting or catastrophic forgetting.
-4. **Deployment**: The retrained model is validated and deployed to production.
-
-This process is managed through a PostgreSQL database hosted on **Neon**, where predictions are logged, and changes in data distributions are tracked over time.
-
-#### **Practical Considerations**:
-- Drift detection is unsupervised and does not require labels. However, retraining requires access to labeled data, making this system most effective in scenarios where new data can be labeled and incorporated into the training pipeline.
-- The KS test is suited for continuous variables. For categorical features, alternative methods like the Chi-Square test should be employed.
-
----
-
-### **Deployment**
 - **Logistic Regression**:
   - Suitable if simplicity and interpretability are priorities.
   - Effective for clinical scenarios where precision (avoiding unnecessary treatments) is important.
@@ -206,33 +197,59 @@ This process is managed through a PostgreSQL database hosted on **Neon**, where 
 
 - **LightGBM, XGBoost, and CatBoost**:
   - Excellent alternatives combining strong recall with slightly reduced precision.
-  - Choose based on specific resource constraints and deployment needs.
+
+--- 
+
+### **Data Drift Detection and Model Retraining**
+
+The project includes a **data drift detection system** that monitors for significant changes in the input data distribution every month. A **Kolmogorov-Smirnov (KS) test** is used to compare the cumulative distributions of continuous feature values in the current data against the original training dataset. The KS test measures the maximum difference between two cumulative distributions and determines whether they are statistically significantly different.
+
+If the test detects significant differences (p-value < 0.05) in more than 20% of the features, the system flags the model for retraining to adapt to the new data distribution. This ensures that the model remains accurate and robust in real-world scenarios.
+
+#### **Steps for Drift Detection and Mitigation**:
+1. **Data Monitoring**: Each month, the system compares incoming data(Stored in the PostgreSQL Database Hosted on Neon) distributions against the training data using the KS test for continuous features.
+2. **Drift Detection**: If drift is detected in more than 20% of the features, the system marks the model for retraining.
+3. **Retraining**: Once flagged, the model is retrained using a combination of new labeled data and the original training data to avoid overfitting or catastrophic forgetting.
+4. **Deployment**: The retrained model is validated and deployed to production.
+
+This process is managed using **GitHub Actions**, which automates the monitoring and retraining process. Monthly, GitHub Actions triggers the data drift detection workflow, which runs the KS test and retrains the model if necessary. The updated model is then redeployed automatically.
+
+#### **Practical Considerations**:
+- Drift detection is unsupervised and does not require labels. However, retraining requires access to labeled data, making this system most effective in scenarios where new data can be labeled and incorporated into the training pipeline.
+- The KS test is suited for continuous variables. For categorical features, alternative methods like the Chi-Square test should be employed.
 
 ---
 
-## **Application Deployment**  
+### **Deployment**
 
-### **Streamlit Cloud**  
+For the deployment, I have embedded many models in the Streamlit app. All the models' predictions can be explained. This approach allows us to have simple models like Logistic Regression for interpretability and complex models like Gradient Boosting, LightGBM, XGBoost, and CatBoost for high performance.
+For both types, the application provides explanations for the predictions while giving users the opportunity to explore different models and compare the predictions.
 
-The app is live on **Streamlit Cloud** and can be accessed here:  
-[Breast Cancer Prediction App](https://touradb-breast-cancer-app.streamlit.app/)  
+---
 
-Features of the app:  
-1. **Predict Tumor Diagnosis**: Input feature values to classify tumors as benign or malignant.  
-2. **Interpret Model Predictions**: Understand the model's decision-making process.  
-3. **Explore Different Models**: Compare predictions across models.  
+## **Application Deployment**
+
+### **Streamlit Cloud**
+
+The app is live on **Streamlit Cloud** and can be accessed here:
+[Breast Cancer Prediction App](https://touradb-breast-cancer-app.streamlit.app/)
+
+Features of the app:
+1. **Predict Tumor Diagnosis**: Input feature values to classify tumors as benign or malignant.
+2. **Interpret Model Predictions**: Understand the model's decision-making process.
+3. **Explore Different Models**: Compare predictions across models.
 4. **Store Predictions**: Predictions are stored in the PostgreSQL database hosted on **Neon** for further analysis.
 
-### **Dockerized Version**  
+### **Dockerized Version**
 
-The app is fully Dockerized and can be pulled and run locally:  
+The app is fully Dockerized and can be pulled and run locally:
 
-1. Pull the Docker image:  
+1. Pull the Docker image:
    ```bash
    docker pull touradbaba/model_engineering_app:latest
    ```  
 
-2. Run the container:  
+2. Run the container:
    ```bash
    docker run -p 8501:8501 touradbaba/model_engineering_app:latest
    ```  
@@ -241,24 +258,24 @@ The app is fully Dockerized and can be pulled and run locally:
 
 ## **How to Run the Project Locally**
 
-### **1. Clone the Repository**  
+### **1. Clone the Repository**
 ```bash
 git clone https://github.com/TouradBaba/model_engineering.git
 cd model_engineering
 ```  
 
-### **2. Install Dependencies**  
-Install all required packages:  
+### **2. Install Dependencies**
+Install all required packages:
 ```bash
 pip install -r full_requirements.txt
 ```  
 
-### **3. Set up the PostgreSQL Database on Neon**  
-1. Create a PostgreSQL database on **Neon** and update the connection details in your local configuration.  
+### **3. Set up the PostgreSQL Database on Neon**
+1. Create a PostgreSQL database on **Neon** and update the connection details in your local configuration.
 2. Ensure the database is accessible for storing predictions.
 
-### **4. Run the App Locally**  
-Start the Streamlit app:  
+### **4. Run the App Locally**
+Start the Streamlit app:
 ```bash
 streamlit run deployment/app.py
 ```
