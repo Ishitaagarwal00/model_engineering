@@ -5,7 +5,7 @@ from tabulate import tabulate
 
 
 # Load secrets from the TOML file
-def load_secrets(file_path='.streamlit/secrets.toml'):
+def load_secrets(file_path='../.streamlit/secrets.toml'):
     secrets = toml.load(file_path)
     return secrets['DSN']
 
