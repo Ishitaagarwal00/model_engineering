@@ -207,7 +207,7 @@ The project includes a **data drift detection system** that monitors for signifi
 If the test detects significant differences (p-value < 0.05) in more than 20% of the features, the system flags the model for retraining to adapt to the new data distribution. This ensures that the model remains accurate and robust in real-world scenarios.
 
 #### **Steps for Drift Detection and Mitigation**:
-1. **Data Monitoring**: Each month, the system compares incoming data(Stored in the PostgreSQL Database Hosted on Neon) distributions against the training data using the KS test for continuous features.
+1. **Data Monitoring**: Each month, the system compares incoming data(Stored in the PostgreSQL Database Hosted on Neon) distributions against the training data using the KS test.
 2. **Drift Detection**: If drift is detected in more than 20% of the features, the system marks the model for retraining.
 3. **Retraining**: Once flagged, the model is retrained using a combination of new labeled data and the original training data to avoid overfitting or catastrophic forgetting.
 4. **Deployment**: The retrained model is validated and deployed to production.
@@ -216,7 +216,6 @@ This process is managed using **GitHub Actions**, which automates the monitoring
 
 #### **Practical Considerations**:
 - Drift detection is unsupervised and does not require labels. However, retraining requires access to labeled data, making this system most effective in scenarios where new data can be labeled and incorporated into the training pipeline.
-- The KS test is suited for continuous variables. For categorical features, alternative methods like the Chi-Square test should be employed.
 
 ---
 
@@ -237,8 +236,8 @@ The app is live on **Streamlit Cloud** and can be accessed here:
 Features of the app:
 1. **Predict Tumor Diagnosis**: Input feature values to classify tumors as benign or malignant.
 2. **Interpret Model Predictions**: Understand the model's decision-making process.
-3. **Explore Different Models**: Compare predictions across models.
-4. **Store Predictions**: Predictions are stored in the PostgreSQL database hosted on **Neon** for further analysis.
+3. **Different Models**: Compare predictions across models.
+4. **Stored Predictions**: Predictions are stored in the PostgreSQL database hosted on **Neon** for further analysis.
 
 ### **Dockerized Version**
 
