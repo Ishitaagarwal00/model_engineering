@@ -7,18 +7,20 @@ This repository hosts a project for predicting breast cancer malignancy using ma
 ## **Table of Contents**
 1. [Objective](#objective)
 2. [Project Overview](#project-overview)
-3. [Repository Structure](#repository-structure)
-4. [Methodology](#methodology)
+3. [Workflow Diagram](#workflow-diagram)
+4. [Repository Structure](#repository-structure)
+5. [Methodology](#methodology)
+    - [CRISP-DM Framework](#crisp-dm-framework)
     - [Data Exploration](#1-data-exploration)
     - [Feature Engineering](#2-feature-engineering)
     - [Model Development](#3-model-development)
     - [Interpretability Analysis](#4-interpretability-analysis)
     - [Model Evaluation and Selection](#5-model-evaluation-and-selection)
     - [Error Analysis](#6-error-analysis)
-5. [Graphical User Interface (GUI)](#graphical-user-interface-gui)
-6. [Application Deployment](#application-deployment)
-7. [How to Run the Project Locally](#how-to-run-the-project-locally)
-8. [Screenshots of the Application](#screenshots-of-the-application)
+6. [Graphical User Interface (GUI)](#graphical-user-interface-gui)
+7. [Application Deployment](#application-deployment)
+8. [How to Run the Project Locally](#how-to-run-the-project-locally)
+9. [Screenshots of the Application](#screenshots-of-the-application)
 
 ---
 
