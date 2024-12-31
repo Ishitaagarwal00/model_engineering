@@ -118,10 +118,11 @@ Check basic statistics and null values in the dataset along with:
   ![Feature Correlation with Target](reports/figures/features_correlation_TargetVariable.png)
 
 - **PCA Visualization**: Reduced dimensionality for visualization in 2D and 3D.
-  - PCA 2D:
+  - **PCA 2D**:
 
     ![PCA 2D](reports/figures/PCA_2D.png)
-  - PCA 3D:
+
+  - **PCA 3D**:
 
     ![PCA 3D](reports/figures/PCA_3D.png)
 
