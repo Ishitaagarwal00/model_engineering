@@ -61,11 +61,11 @@ def retrain_and_save_models(X_train, y_train):
     }
 
     model_paths = {
-        'logistic_regression': 'deployment/models/logistic_regression.pkl',
-        'gradient_boosting': 'deployment/models/gradient_boosting.pkl',
-        'lightgbm': 'deployment/models/lightgbm.pkl',
-        'xgboost': 'deployment/models/xgboost.pkl',
-        'catboost': 'deployment/models/catboost.pkl'
+        'logistic_regression': './deployment/models/logistic_regression.pkl',
+        'gradient_boosting': './deployment/models/gradient_boosting.pkl',
+        'lightgbm': './deployment/models/lightgbm.pkl',
+        'xgboost': './deployment/models/xgboost.pkl',
+        'catboost': './deployment/models/catboost.pkl'
     }
 
     for model_name, model in models.items():
