@@ -39,7 +39,7 @@ jobs:
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "There are unstaged changes. Committing ..."
             git add --all
-            git commit -m "Automated commit to avoid unstaged changes before pull"
+            git commit -m "Monthly Data Drift Monitoring and Model Retraining"
           else
             echo "No unstaged changes."
           fi
