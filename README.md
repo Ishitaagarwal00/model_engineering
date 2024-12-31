@@ -9,12 +9,12 @@ This repository hosts a project for predicting breast cancer malignancy using ma
 2. [Project Overview](#project-overview)
 3. [Repository Structure](#repository-structure)
 4. [Methodology](#methodology)
-    - Data Exploration
-    - Feature Engineering
-    - Model Development
-    - Model Evaluation and Selection
-    - Interpretability Analysis
-    - Error Analysis
+    - [Data Exploration](#1-data-exploration)
+    - [Feature Engineering](#2-feature-engineering)
+    - [Model Development](#3-model-development)
+    - [Interpretability Analysis](#4-interpretability-analysis)
+    - [Model Evaluation and Selection](#5-model-evaluation-and-selection)
+    - [Error Analysis](#6-error-analysis)
 5. [Graphical User Interface (GUI)](#graphical-user-interface-gui)
 6. [Application Deployment](#application-deployment)
 7. [How to Run the Project Locally](#how-to-run-the-project-locally)
