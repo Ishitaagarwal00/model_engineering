@@ -204,15 +204,15 @@ The models evaluated (Logistic Regression, Gradient Boosting, LightGBM, XGBoost,
 
 ## **Graphical User Interface (GUI)**
 
-The **Streamlit-based GUI** provides an intuitive interface for doctors to use the breast cancer prediction system in their daily work. The interface emphasizes simplicity, interpretability, and usability, ensuring users can make informed decisions with ease.
+The **Streamlit-based GUI** provides an intuitive interface for users to use the breast cancer prediction app. The interface emphasizes simplicity, interpretability, and usability, ensuring users can make informed decisions with ease.
 
 ### **Key Features**:
 
 1. **Interactive Input Fields**:
    - Users can enter patient data (tumor features) directly into the app and use buttons to increase/decrease values.
-   
+
 2. **Model Selection**:
-   - Users can choose between multiple models (e.g., Logistic Regression, Gradient Boosting, XGBoost) to see predictions and compare results.
+   - Users can choose between multiple models (Logistic Regression, Gradient Boosting, XGBoost, Light GBM, Catboost) to see predictions and compare results.
 
 3. **Prediction Visualization**:
    - Results are displayed clearly, classifying tumors as either **Benign** or **Malignant**.
@@ -222,7 +222,7 @@ The **Streamlit-based GUI** provides an intuitive interface for doctors to use t
    - The GUI integrates explanations to display how each feature influenced the prediction, offering transparency in decision-making.
 
 5. **Stored Predictions**:
-   - All predictions are saved in a PostgreSQL database, allowing doctors to track historical results and analyze patterns over time.
+   - All predictions are saved in a PostgreSQL database, allowing to track historical results and analyze patterns over time.
 
 ---
 
