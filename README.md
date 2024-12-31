@@ -210,7 +210,7 @@ If the test detects significant differences (p-value < 0.05) in more than 20% of
 1. **Data Monitoring**: Each month, the system compares incoming data(Stored in the PostgreSQL Database Hosted on Neon) distributions against the training data using the KS test.
 2. **Drift Detection**: If drift is detected in more than 20% of the features, the system marks the model for retraining.
 3. **Retraining**: Once flagged, the model is retrained using a combination of new labeled data and the original training data to avoid overfitting or catastrophic forgetting.
-4. **Deployment**: The retrained model is validated and deployed to production.
+4. **Deployment**: The retrained models are validated and deployed to production.
 
 This process is managed using **GitHub Actions**, which automates the monitoring and retraining process. Monthly, GitHub Actions triggers the data drift detection workflow, which runs the KS test and retrains the model if necessary. The updated model is then redeployed automatically.
 
