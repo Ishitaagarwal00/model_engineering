@@ -79,7 +79,7 @@ if __name__ == "__main__":
     dsn = load_secrets()
 
     # Load original data
-    original_data = pd.read_csv('../data/processed/data_cleaned.csv')
+    original_data = pd.read_csv('./data/processed/data_cleaned.csv')
 
     # Fetch new data from the database
     new_data = fetch_new_data(dsn)
