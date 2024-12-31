@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  retrain:
+  Data Drift Monitoring and Model Retraining Workflow:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
