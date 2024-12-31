@@ -37,7 +37,7 @@ jobs:
       - name: Check for Unstaged Changes
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then
-            echo "Unstaged changes. Committing ..."
+            echo "There are unstaged changes. Committing ..."
             git add --all
             git commit -m "Automated commit to avoid unstaged changes before pull"
           else
@@ -46,14 +46,14 @@ jobs:
 
       - name: Pull and Rebase
         run: |
-          git pull origin main --rebase
+          git pull origin main --rebase || echo "No changes to rebase"
 
       - name: Commit Changes
         run: |
-          git add --all
-          git commit -m "Monthly Data Drift Monitoring and Model Retraining"
+          git diff --exit-code || (git add --all && git commit -m "Monthly Data Drift Monitoring and Model Retraining")
 
       - name: Push Changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.PAT }}
+
