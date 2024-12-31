@@ -2,7 +2,6 @@ name: Data Drift Monitoring and Model Retraining Workflow
 
 on:
   schedule:
-    - cron: '0 0 31 * *'
     - cron: '0 0 28-31 * *'
   workflow_dispatch:
 
@@ -29,3 +28,19 @@ jobs:
       - name: Run retraining script
         run: |
           python py_scripts/data_drift_monitoring.py
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git pull origin main --rebase
+
+      - name: Commit Changes
+        run: |
+          git add --all
+          git commit -m "Monthly Data Drift Monitoring and Model Retraining"
+
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PAT }}
