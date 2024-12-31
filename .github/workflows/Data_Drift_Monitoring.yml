@@ -34,7 +34,7 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
 
-      - name: Check for Unstaged Changes
+      - name: Check for Unstaged Changes and Commit
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "There are unstaged changes. Committing ..."
@@ -48,12 +48,7 @@ jobs:
         run: |
           git pull origin main --rebase || echo "No changes to rebase"
 
-      - name: Commit Changes
-        run: |
-          git diff --exit-code || (git add --all && git commit -m "Monthly Data Drift Monitoring and Model Retraining")
-
       - name: Push Changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.PAT }}
-
