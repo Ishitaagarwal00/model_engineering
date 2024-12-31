@@ -9,14 +9,16 @@ This repository hosts a project for predicting breast cancer malignancy using ma
 2. [Project Overview](#project-overview)
 3. [Repository Structure](#repository-structure)
 4. [Methodology](#methodology)
-   - Data Exploration
-   - Feature Engineering
-   - Model Development
-   - Model Evaluation and Selection
-   - Interpretability Analysis
-   - Error Analysis
-5. [Application Deployment](#application-deployment)
-6. [How to Run the Project](#how-to-run-the-project)
+    - Data Exploration
+    - Feature Engineering
+    - Model Development
+    - Model Evaluation and Selection
+    - Interpretability Analysis
+    - Error Analysis
+5. [Graphical User Interface (GUI)](#graphical-user-interface-gui)
+6. [Application Deployment](#application-deployment)
+7. [How to Run the Project Locally](#how-to-run-the-project-locally)
+8. [Screenshots of the Application](#screenshots-of-the-application)
 
 ---
 
@@ -199,6 +201,30 @@ The models evaluated (Logistic Regression, Gradient Boosting, LightGBM, XGBoost,
   - Excellent alternatives combining strong recall with slightly reduced precision.
 
 --- 
+
+## **Graphical User Interface (GUI)**
+
+The **Streamlit-based GUI** provides an intuitive interface for doctors to use the breast cancer prediction system in their daily work. The interface emphasizes simplicity, interpretability, and usability, ensuring users can make informed decisions with ease.
+
+### **Key Features**:
+
+1. **Interactive Input Fields**:
+   - Users can enter patient data (tumor features) directly into the app and use buttons to increase/decrease values.
+   
+2. **Model Selection**:
+   - Users can choose between multiple models (e.g., Logistic Regression, Gradient Boosting, XGBoost) to see predictions and compare results.
+
+3. **Prediction Visualization**:
+   - Results are displayed clearly, classifying tumors as either **Benign** or **Malignant**.
+   - Probabilities are provided alongside predictions to help assess certainty.
+
+4. **Interpretability Tools**:
+   - The GUI integrates explanations to display how each feature influenced the prediction, offering transparency in decision-making.
+
+5. **Stored Predictions**:
+   - All predictions are saved in a PostgreSQL database, allowing doctors to track historical results and analyze patterns over time.
+
+---
 
 ### **Data Drift Detection and Model Retraining**
 
