@@ -89,6 +89,7 @@ requirements.txt          # Simplified dependencies for Streamlit Cloud & GitHub
 ---
 
 ## **Methodology**
+
 ### **CRISP-DM Framework**
 
 The methodology for this project follows the CRISP-DM (Cross-Industry Standard Process for Data Mining) framework, which includes the following phases:
