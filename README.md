@@ -230,17 +230,22 @@ The **Streamlit-based GUI** provides an intuitive interface for users to use the
 1. **Interactive Input Fields**:
    - Users can enter patient data (tumor features) directly into the app and use buttons to increase/decrease values.
 
-2. **Model Selection**:
+2. **Upload Document**:
+   - Users can upload a CSV file containing for predictions.
+   - The app processes the file and add new columns for prediction, predictions probabilities, and explanations.
+   - The predictions are stored in the PostgreSQL database.
+
+3. **Model Selection**:
    - Users can choose between multiple models (Logistic Regression, Gradient Boosting, XGBoost, Light GBM, Catboost) to see predictions and compare results.
 
-3. **Prediction Visualization**:
+4. **Prediction Visualization**:
    - Results are displayed clearly, classifying tumors as either **Benign** or **Malignant**.
    - Probabilities are provided alongside predictions to help assess certainty.
 
-4. **Interpretability Tools**:
+5. **Interpretability Tools**:
    - The GUI integrates explanations to display how each feature influenced the prediction, offering transparency in decision-making.
 
-5. **Stored Predictions**:
+6. **Stored Predictions**:
    - All predictions are saved in a PostgreSQL database, allowing to track historical results and analyze patterns over time.
 
 ---
