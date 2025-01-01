@@ -174,7 +174,8 @@ Check basic statistics and null values in the dataset along with:
 
 ### **6. Error Analysis**
 
-- Conducted a thorough error analysis, inspecting misclassified cases to identify model weaknesses.
+Conducted a thorough error analysis, inspecting misclassified cases to identify the model's weaknesses.
+
 - **Confusion Matrices**: Evaluated model predictions on the test set.
 
   ![Confusion Matrices](reports/metrics/confusion_matrices.png)
