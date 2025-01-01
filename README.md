@@ -53,7 +53,7 @@ The project follows a structured workflow from data exploration to model deploym
 ## **Repository Structure**
 
 ```
-.github/workflows/    # Workflow for GitHub Actions (Data drift and models retraining).
+.github/workflows/    # GitHub Actions workflow for data drift and model retraining
 
 data/
   processed/  # Processed dataset after data exploration and feature engineering
@@ -71,7 +71,7 @@ notebooks/  # Jupyter notebooks
     - 01_data_exploration.ipynb           # Data exploration and visualization
     - 02_feature_engineering.ipynb        # Feature engineering and selection
     - 03_modeling.ipynb                   # Model training and evaluation
-    - 04_models_interpretability.ipynb    # Interpretability analysis(Including SHAP and LIME)
+    - 04_models_interpretability.ipynb    # Interpretability analysis (Including SHAP and LIME)
     - 05_error_analysis.ipynb             # Error analysis
 
 reports/
@@ -82,8 +82,8 @@ py_scripts/  # Python scripts
     - data_drift_monitoring.py    # Script for Data drift detection and model retraining
     - query_db.py                 # Script to query the PostgreSQL database
 
-full_requirements.txt     # Comprehensive list of all dependencies for the project.
-requirements.txt          # Simplified dependencies for deployment on Streamlit Cloud/GitHub Actions.
+full_requirements.txt     # Comprehensive list of all dependencies for the project
+requirements.txt          # Simplified dependencies for Streamlit Cloud & GitHub Actions
 ```
 
 ---
