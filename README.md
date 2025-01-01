@@ -83,7 +83,7 @@ py_scripts/  # Python scripts
     - query_db.py                 # Script to query the PostgreSQL database
 
 full_requirements.txt     # Comprehensive list of all dependencies for the project.
-requirements.txt          # Simplified dependencies for deployment on Streamlit Cloud and GitHub Actions.
+requirements.txt          # Simplified dependencies for deployment on Streamlit Cloud/GitHub Actions.
 ```
 
 ---
