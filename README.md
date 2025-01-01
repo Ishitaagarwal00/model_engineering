@@ -247,15 +247,15 @@ The **Streamlit-based GUI** provides an intuitive interface for users to use the
 
 ### **Data Drift Detection and Model Retraining**
 
-The project includes a **data drift detection system** that monitors for significant changes in the input data distribution every month. A **Kolmogorov-Smirnov (KS) test** is used to compare the cumulative distributions of continuous feature values in the current data against the original training dataset. The KS test measures the maximum difference between two cumulative distributions and determines whether they are statistically significantly different.
+The project includes a **data drift detection system** that monitors for significant changes in the input data distribution every month. A **Kolmogorov-Smirnov (KS) test** is used to compare the cumulative distributions of feature values in the current data against the original training dataset. The KS test measures the maximum difference between two cumulative distributions and determines whether they are statistically significantly different.
 
 If the test detects significant differences (p-value < 0.05) in more than 20% of the features, the system flags the model for retraining to adapt to the new data distribution. This ensures that the model remains accurate and robust in real-world scenarios.
 
 #### **Steps for Drift Detection and Mitigation**:
 1. **Data Monitoring**: Each month, the system compares incoming data(Stored in the PostgreSQL Database Hosted on Neon) distributions against the training data using the KS test.
 2. **Drift Detection**: If drift is detected in more than 20% of the features, the system marks the model for retraining.
-3. **Retraining**: Once flagged, the model is retrained using a combination of new labeled data and the original training data to avoid overfitting or catastrophic forgetting.
-4. **Deployment**: The retrained models are validated and deployed to production.
+3. **Retraining**: Once flagged, the models are retrained.
+4. **Deployment**: The retrained models are automatically deployed to production.
 
 This process is managed using **GitHub Actions**, which automates the monitoring and retraining process. Monthly, GitHub Actions triggers the data drift detection workflow, which runs the KS test and retrains the model if necessary. The updated model is then redeployed automatically.
 
@@ -327,7 +327,13 @@ streamlit run deployment/app.py
 ## **Screenshots of the Application**
 
 ### **Screenshot before prediction using Logistic Regression**
-![Screenshot before prediction](reports/figures/screenshot_before_prediction.png)
+![Screenshot before prediction](reports/app_screenshots/screenshot_before_prediction.png)
 
 ### **Screenshot after prediction using Logistic Regression**
-![Screenshot after prediction](reports/figures/screenshot_prediction.png)
+![Screenshot after prediction](reports/app_screenshots/screenshot_prediction.png)
+
+### **Screenshot before prediction using Logistic Regression-Upload document page**
+![Screenshot after prediction](reports/app_screenshots/screenshot_before_prediction_upload_doc_page.png)
+
+### **Screenshot after prediction using Logistic Regression-Upload document page**
+![Screenshot after prediction](reports/app_screenshots/screenshot_prediction_upload_doc_page.png)
