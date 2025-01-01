@@ -2,7 +2,7 @@ name: Data Drift Monitoring and Model Retraining Workflow
 
 on:
   schedule:
-    - cron: '0 0 28-31 * *'
+    - cron: '0 0 21 * *'
   workflow_dispatch:
 
 jobs:
