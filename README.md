@@ -179,6 +179,17 @@ Check basic statistics and null values in the dataset along with:
 
   ![Confusion Matrices](reports/metrics/confusion_matrices.png)
 
+
+- **Performance Comparison**: Evaluated key metrics across selected models.
+    
+    | Metric          | Logistic Regression | Gradient Boosting | LightGBM | XGBoost | CatBoost |
+    |------------------|---------------------|-------------------|----------|---------|----------|
+    | **Accuracy**     | 99.1%              | 98.2%            | 99.1%   | 99.1%  | 99.1%   |
+    | **Precision**    | 100.0%             | 95.2%            | 100.0%  | 97.6%  | 97.6%   |
+    | **Recall**       | 97.5%              | 100.0%           | 97.5%   | 100.0% | 100.0%  |
+    | **F1-Score**     | 98.7%              | 97.6%            | 98.7%   | 98.8%  | 98.8%   |
+    | **ROC-AUC**      | 1.0                | 1.0              | 1.0     | 1.0    | 1.0     |
+
 The models evaluated (Logistic Regression, Gradient Boosting, LightGBM, XGBoost, and CatBoost) show high accuracy and excellent predictive performance on the test set.
 
 #### **Observations**
