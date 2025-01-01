@@ -53,6 +53,8 @@ The project follows a structured workflow from data exploration to model deploym
 ## **Repository Structure**
 
 ```
+.github/workflows/    # Workflow for GitHub Actions to monitor data drift monthly and trigger models' retraining when necessary.
+
 data/
   processed/  # Processed dataset after data exploration and feature engineering
   raw/ Original dataset
