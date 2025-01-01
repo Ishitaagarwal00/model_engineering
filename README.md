@@ -79,8 +79,8 @@ reports/
   metrics/  # Metrics visualizations
 
 py_scripts/  # Python scripts
-    - data_drift_monitoring.py # Data drift detection and model retraining
-    - query_db.py # Script to query the PostgreSQL database
+    - data_drift_monitoring.py    # Script for Data drift detection and model retraining
+    - query_db.py                 # Script to query the PostgreSQL database
 
 full_requirements.txt  # Comprehensive list of all dependencies for the project.
 requirements.txt  # Simplified dependencies for deployment on Streamlit Cloud and GitHub Actions.
