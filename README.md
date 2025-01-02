@@ -239,7 +239,7 @@ The **Streamlit-based GUI** provides an intuitive interface for users to use the
    - Users can choose between multiple models (Logistic Regression, Gradient Boosting, XGBoost, Light GBM, Catboost) to see predictions and compare results.
 
 4. **Prediction Visualization**:
-   - Results are displayed clearly, classifying tumors as either **Benign** or **Malignant**.
+   - Results are displayed classifying tumors as either **Benign** or **Malignant**.
    - Probabilities are provided alongside predictions to help assess certainty.
 
 5. **Interpretability Tools**:
@@ -254,15 +254,15 @@ The **Streamlit-based GUI** provides an intuitive interface for users to use the
 
 The project includes a **data drift detection system** that monitors for significant changes in the input data distribution every month. A **Kolmogorov-Smirnov (KS) test** is used to compare the cumulative distributions of feature values in the current data against the original training dataset. The KS test measures the maximum difference between two cumulative distributions and determines whether they are statistically significantly different.
 
-If the test detects significant differences (p-value < 0.05) in more than 20% of the features, the system flags the model for retraining to adapt to the new data distribution. This ensures that the model remains accurate and robust in real-world scenarios.
+If the test detects significant differences (p-value < 0.05) in more than 20% of the features, the system flags the model for retraining to adapt to the new data distribution.
 
 #### **Steps for Drift Detection and Mitigation**:
-1. **Data Monitoring**: Each month, the system compares incoming data(Stored in the PostgreSQL Database Hosted on Neon) distributions against the training data using the KS test.
-2. **Drift Detection**: If drift is detected in more than 20% of the features, the system marks the model for retraining.
-3. **Retraining**: Once flagged, the models are retrained.
-4. **Deployment**: The retrained models are automatically deployed to production.
+1. **Data Monitoring**: Each month, the system compares incoming data(Stored in the PostgreSQL Database Hosted on Neon) distributions against the training data(Baseline data) using the KS test.
+2. **Drift Detection**: Data drift is detected if the KS test p-value is less than 0.05 for more than 20% of the features.
+3. **Retraining**: When data drift is detected the systems starts retraining the models.
+4. **Deployment**: The retrained models are automatically deployed to the Streamlit app.
 
-This process is managed using **GitHub Actions**, which automates the monitoring and retraining process. Monthly, GitHub Actions triggers the data drift detection workflow, which runs the KS test and retrains the model if necessary. The updated model is then redeployed automatically.
+This process is managed using **GitHub Actions**, which automates the monitoring and retraining process. Monthly, GitHub Actions triggers the data drift detection workflow, which runs the KS test and retrains the model if necessary.
 
 #### **Practical Considerations**:
 - Drift detection is unsupervised and does not require labels. However, retraining requires access to labeled data, making this system most effective in scenarios where new data can be labeled and incorporated into the training pipeline.
@@ -282,12 +282,6 @@ For both types, the application provides explanations for the predictions while 
 
 The app is live on **Streamlit Cloud** and can be accessed here:
 [Breast Cancer Prediction App](https://touradb-breast-cancer-app.streamlit.app/)
-
-Features of the app:
-1. **Predict Tumor Diagnosis**: Input feature values to classify tumors as benign or malignant.
-2. **Interpret Model Predictions**: Understand the model's decision-making process.
-3. **Different Models**: Compare predictions across models.
-4. **Stored Predictions**: Predictions are stored in the PostgreSQL database hosted on **Neon** for further analysis.
 
 ### **Dockerized Version**
 
@@ -313,21 +307,46 @@ git clone https://github.com/TouradBaba/model_engineering.git
 cd model_engineering
 ```  
 
-### **2. Install Dependencies**
-Install all required packages:
+### **2. Set Up a Virtual Environment (Recommended)**
+Setting up a virtual environment ensures that your project dependencies are isolated from your system Python installation, preventing conflicts with other projects.
+
+#### **On Windows:**
+1. Create a virtual environment:
+   ```bash
+   python -m venv myenv
+   ```
+2. Activate the virtual environment:
+   ```bash
+   myenv\Scripts\activate 
+   ```
+
+#### **On Linux/macOS:**
+1. Create a virtual environment:
+   ```bash
+   python3 -m venv myenv
+   ```
+2. Activate the virtual environment:
+   ```bash
+   source myenv/bin/activate 
+   ```
+
+### **3. Install Dependencies**
+Install all required packages using the `full_requirements.txt` file:
 ```bash
 pip install -r full_requirements.txt
 ```  
 
-### **3. Set up the PostgreSQL Database on Neon**
+### **4. Set up the PostgreSQL Database on Neon**
 1. Create a PostgreSQL database on **Neon** and update the connection details in your local configuration.
 2. Ensure the database is accessible for storing predictions.
 
-### **4. Run the App Locally**
+### **5. Run the App Locally**
 Start the Streamlit app:
 ```bash
 streamlit run deployment/app.py
 ```
+
+--- 
 
 ## **Screenshots of the Application**
 
