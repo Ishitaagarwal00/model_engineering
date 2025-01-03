@@ -46,7 +46,7 @@ Breast cancer is among the most diagnosed cancers worldwide, and early detection
 
 The project follows a structured workflow from data exploration to model deployment, including interpretability analysis and data drift detection for model retraining. The diagram below illustrates the key steps in the project pipeline:
 
-![Workflow Diagram](reports/figures/workflow.png)
+![Workflow Diagram](visuals/figures/workflow.png)
 
 ---
 
@@ -74,7 +74,8 @@ notebooks/  # Jupyter notebooks
     - 04_models_interpretability.ipynb    # Interpretability analysis (Including SHAP and LIME)
     - 05_error_analysis.ipynb             # Error analysis
 
-reports/
+visuals/
+  app_screenshots/  # Screenshots of the deployed app
   figures/      # Generated visualizations
   metrics/      # Metrics visualizations
 
@@ -113,23 +114,23 @@ The methodology for this project follows the CRISP-DM (Cross-Industry Standard P
 
 Check basic statistics and null values in the dataset along with:
 - **Diagnosis Distribution**: Explored the dataset distribution of benign vs. malignant cases.
-  ![Diagnosis Distribution](reports/figures/diagnosis_distribution.png)
+  ![Diagnosis Distribution](visuals/figures/diagnosis_distribution.png)
 
 - **Boxplots grouped by 'diagnosis'**: Visualized feature distributions for benign and malignant cases.
-  ![Features Boxplot](reports/figures/features_boxplot_by_diagnosis.png)
+  ![Features Boxplot](visuals/figures/features_boxplot_by_diagnosis.png)
 
 - **Correlation Analysis**: Visualized feature relationships with heatmaps and correlation to the target variable.
-  ![Correlation Heatmap](reports/figures/correlation_heatmap.png)
-  ![Feature Correlation with Target](reports/figures/features_correlation_TargetVariable.png)
+  ![Correlation Heatmap](visuals/figures/correlation_heatmap.png)
+  ![Feature Correlation with Target](visuals/figures/features_correlation_TargetVariable.png)
 
 - **PCA Visualization**: Reduced dimensionality for visualization in 2D and 3D.
   - **PCA 2D**:
 
-    ![PCA 2D](reports/figures/PCA_2D.png)
+    ![PCA 2D](visuals/figures/PCA_2D.png)
 
   - **PCA 3D**:
 
-    ![PCA 3D](reports/figures/PCA_3D.png)
+    ![PCA 3D](visuals/figures/PCA_3D.png)
 
 ### **2. Feature Engineering**
 
@@ -143,7 +144,7 @@ Check basic statistics and null values in the dataset along with:
     - Kruskal-Wallis H Test.
 
 - **Feature Importance Analysis**: Highlighted the most impactful features.
-  ![Feature Importance](reports/figures/feature_importance.png)
+  ![Feature Importance](visuals/figures/feature_importance.png)
 
 ### **3. Model Development**
 
@@ -153,7 +154,7 @@ Check basic statistics and null values in the dataset along with:
 - Select models achieving F1-scores above 0.96 for further analysis.
 
 - **Performance Comparison**: Compared metrics across models.
-  ![Performance Comparison](reports/metrics/F1-Score.png)
+  ![Performance Comparison](visuals/metrics/F1-Score.png)
 
 ### **4. Interpretability Analysis**
 
@@ -178,7 +179,7 @@ Conducted a thorough error analysis, inspecting misclassified cases to identify 
 
 - **Confusion Matrices**: Evaluated model predictions on the test set.
 
-  ![Confusion Matrices](reports/metrics/confusion_matrices.png)
+  ![Confusion Matrices](visuals/metrics/confusion_matrices.png)
 
 
 - **Performance Comparison**: Evaluated key metrics across selected models.
@@ -351,13 +352,13 @@ streamlit run deployment/app.py
 ## **Screenshots of the Application**
 
 ### **Screenshot before prediction using Logistic Regression**
-![Screenshot before prediction](reports/app_screenshots/screenshot_before_prediction.png)
+![Screenshot before prediction](visuals/app_screenshots/screenshot_before_prediction.png)
 
 ### **Screenshot after prediction using Logistic Regression**
-![Screenshot after prediction](reports/app_screenshots/screenshot_prediction.png)
+![Screenshot after prediction](visuals/app_screenshots/screenshot_prediction.png)
 
 ### **Screenshot before prediction using Logistic Regression-Upload document page**
-![Screenshot after prediction](reports/app_screenshots/screenshot_before_prediction_upload_doc_page.png)
+![Screenshot after prediction](visuals/app_screenshots/screenshot_before_prediction_upload_doc_page.png)
 
 ### **Screenshot after prediction using Logistic Regression-Upload document page**
-![Screenshot after prediction](reports/app_screenshots/screenshot_prediction_upload_doc_page.png)
+![Screenshot after prediction](visuals/app_screenshots/screenshot_prediction_upload_doc_page.png)
