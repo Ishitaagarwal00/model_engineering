@@ -55,6 +55,9 @@ The project follows a structured workflow from data exploration to model deploym
 ```
 .github/workflows/    # GitHub Actions workflow for data drift and model retraining
 
+.streamlit/  # Streamlit configuration
+  config.toml  # Streamlit configuration file
+
 data/
   processed/  # Processed dataset after data exploration and feature engineering
   raw/        # Original dataset
@@ -362,9 +365,6 @@ streamlit run deployment/app.py
 
 ### **Screenshot after prediction using Logistic Regression-Upload document page**
 ![Screenshot after prediction](visuals/app_screenshots/screenshot_prediction_upload_doc_page.png)
-
-
-
 
 
 
