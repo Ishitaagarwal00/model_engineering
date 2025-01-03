@@ -26,7 +26,7 @@ This repository hosts a project for breast cancer classification using machine l
 
 ## **Objective**
 
-To develop a machine learning-based tool to classify breast tumors as benign or malignant with an F1-score exceeding 0.95 while integrating interpretability techniques for actionable insights. Additionally, predictions are stored in a PostgreSQL database hosted on **Neon**, and a data drift detection mechanism runs monthly to retrain the model if drift is detected.
+To develop a machine learning tool to classify breast tumors as benign or malignant, targeting an F1-score greater than 0.95. The tool will incorporate interpretability techniques for actionable insights, implement a system for storing predictions, and include a monthly data drift detection mechanism to trigger model retraining when drift is detected.
 
 ---
 
