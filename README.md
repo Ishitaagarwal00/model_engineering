@@ -1,4 +1,4 @@
-# **Breast Cancer Prediction with Interpretability**
+# **Breast Cancer Classification with Interpretability**
 
 This repository hosts a project for breast cancer classification using machine learning models with high accuracy and interpretability. The project features data preprocessing, model training and selection, interpretability analysis, deployment as an interactive web application, and integration with a PostgreSQL database to store predictions and track data drift for retraining.
 
