@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import psycopg2
 import json
 
-
 # Models paths
 model_paths = {
     'Logistic Regression': 'models/logistic_regression.pkl',
