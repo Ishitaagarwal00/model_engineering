@@ -135,7 +135,7 @@ if st.session_state.page == "Manual Input":
     input_data = {}
     for feature in features:
         input_data[feature] = st.sidebar.number_input(
-            f"Enter {feature}:", value=0.0, format="%.2f"
+            f"Enter {feature}:", value=0.0, format="%.16f"
         )
 
     # Convert input data to a DataFrame
