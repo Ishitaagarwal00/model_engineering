@@ -362,3 +362,9 @@ streamlit run deployment/app.py
 
 ### **Screenshot after prediction using Logistic Regression-Upload document page**
 ![Screenshot after prediction](visuals/app_screenshots/screenshot_prediction_upload_doc_page.png)
+
+
+
+
+
+
