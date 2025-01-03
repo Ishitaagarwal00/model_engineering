@@ -18,19 +18,35 @@ model_paths = {
 
 model_names = list(model_paths.keys())
 
-# Streamlit app setup
+# App setup
 st.set_page_config(page_title="Breast Cancer Prediction App", layout="wide")
-st.title("Breast Cancer Prediction App")
-st.markdown("This app predicts whether a tumor is **benign** or **malignant** using a variety of models.")
 
-# Navigation buttons at the top
-col1, col2 = st.columns([1, 3])
+# Navigation buttons
+st.markdown("""
+    <style>
+        .stButton > button {
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .stButton > button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+col1, col2 = st.columns([1, 1], gap="small")
 with col1:
     manual_input_button = st.button("Manual Input")
 with col2:
     csv_upload_button = st.button("Upload CSV")
 
-## Page Navigation Logic
+
+# Page Navigation Logic
 if 'page' not in st.session_state:
     st.session_state.page = "Manual Input"
 
@@ -38,6 +54,10 @@ if manual_input_button:
     st.session_state.page = "Manual Input"
 elif csv_upload_button:
     st.session_state.page = "Upload CSV"
+
+# Title and description
+st.title("Breast Cancer Prediction App")
+st.markdown("This app predicts whether a tumor is **benign** or **malignant** using a variety of models.")
 
 # Model selection
 selected_model_name = st.sidebar.selectbox("Select Model", model_names)
