@@ -26,7 +26,7 @@ This repository hosts a project for breast cancer classification using machine l
 
 ## **Objective**
 
-To develop a machine learning tool to classify breast tumors as benign or malignant, targeting an F1-score greater than 0.95. The tool will incorporate interpretability techniques for actionable insights, implement a system for storing predictions, and include a monthly data drift detection mechanism to trigger model retraining when drift is detected.
+To develop a machine learning tool to classify breast tumors as benign or malignant, targeting an F1-score greater than 0.95. The tool will incorporate interpretability techniques for actionable insights, implement a database for storing predictions, and include a monthly data drift detection mechanism to trigger model retraining when drift is detected.
 
 ---
 
@@ -235,38 +235,39 @@ The **Streamlit-based GUI** provides an intuitive interface for users to use the
    - Users can enter patient data (tumor features) directly into the app and use buttons to increase/decrease values.
 
 2. **Upload Document**:
-   - Users can upload a CSV file containing for predictions.
-   - The app processes the file and add new columns for prediction, predictions probabilities, and explanations.
-   - The predictions are stored in the PostgreSQL database.
+   - Users can upload a CSV file containing for predictions. 
+   - If the user upload a CSV file the system will perform a batch processing and the application will create new columns(Prediction, Prediction label, Prediction probabilities, Model used to predict) the user can then download them or visualize them in the app.
 
 3. **Model Selection**:
-   - Users can choose between multiple models (Logistic Regression, Gradient Boosting, XGBoost, Light GBM, Catboost) to see predictions and compare results.
+   - The default model is Logistic Regression for its simplicity and interpretability.
+   - Users can choose between multiple models (Gradient Boosting, XGBoost, Light GBM, Catboost) to see predictions and compare results.
 
 4. **Prediction Visualization**:
    - Results are displayed classifying tumors as either **Benign** or **Malignant**.
    - Probabilities are provided alongside predictions to help assess certainty.
 
 5. **Interpretability Tools**:
-   - The GUI integrates explanations to display how each feature influenced the prediction, offering transparency in decision-making.
+   - Global Explanations for all the models are provided.
+   - Local explanations for single predictions are also available.
 
 6. **Stored Predictions**:
-   - All predictions are saved in a PostgreSQL database, allowing to track historical results and analyze patterns over time.
+   - All predictions by uploaded documents or manual input are stored in a PostgreSQL database allowing to track historical results and analyze patterns over time.
 
 ---
 
 ### **Data Drift Detection and Model Retraining**
 
-The project includes a **data drift detection system** that monitors for significant changes in the input data distribution every month. A **Kolmogorov-Smirnov (KS) test** is used to compare the cumulative distributions of feature values in the current data against the original training dataset. The KS test measures the maximum difference between two cumulative distributions and determines whether they are statistically significantly different.
+The project includes a **data drift detection system** that monitors for significant changes in the input data distribution every month. A **Kolmogorov-Smirnov (KS) test** is used to compare the cumulative distributions of feature values in the current data against the original training dataset(Baseline Data). The KS test measures the difference between two cumulative distributions and determines whether they are statistically significantly different.
 
 If the test detects significant differences (p-value < 0.05) in more than 20% of the features, the system flags the model for retraining to adapt to the new data distribution.
 
 #### **Steps for Drift Detection and Mitigation**:
-1. **Data Monitoring**: Each month, the system compares incoming data(Stored in the PostgreSQL Database Hosted on Neon) distributions against the training data(Baseline data) using the KS test.
+1. **Data Monitoring**: Each month, the system compares incoming data(Stored in the PostgreSQL Database Hosted on Neon) distributions against the training data using the KS test.
 2. **Drift Detection**: Data drift is detected if the KS test p-value is less than 0.05 for more than 20% of the features.
 3. **Retraining**: When data drift is detected the systems starts retraining the models.
 4. **Deployment**: The retrained models are automatically deployed to the Streamlit app.
 
-This process is managed using **GitHub Actions**, which automates the monitoring and retraining process. Monthly, GitHub Actions triggers the data drift detection workflow, which runs the KS test and retrains the model if necessary.
+This process is managed using **GitHub Actions**, which automates the monitoring and retraining process. Monthly, GitHub Actions triggers the data drift detection workflow, which runs the KS test and retrains the models if necessary.
 
 #### **Practical Considerations**:
 - Drift detection is unsupervised and does not require labels. However, retraining requires access to labeled data, making this system most effective in scenarios where new data can be labeled and incorporated into the training pipeline.
@@ -275,7 +276,7 @@ This process is managed using **GitHub Actions**, which automates the monitoring
 
 ### **Deployment**
 
-For the deployment, I have embedded many models in the Streamlit app. All the models' predictions can be explained. This approach allows us to have simple models like Logistic Regression for interpretability and complex models like Gradient Boosting, LightGBM, XGBoost, and CatBoost for high performance.
+For the deployment, I have integrated many models in the Streamlit app. This approach allows us to have simple models like Logistic Regression for interpretability and complex models like Gradient Boosting, LightGBM, XGBoost, and CatBoost for high performance.
 For both types, the application provides explanations for the predictions while giving users the opportunity to explore different models and compare the predictions.
 
 ---
