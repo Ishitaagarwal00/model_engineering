@@ -40,9 +40,9 @@ st.markdown("""
 
 col1, col2 = st.columns([1, 1], gap="small")
 with col1:
-    manual_input_button = st.button("Manual Input")
+    manual_input_button = st.button("⌨️ Manual Input")
 with col2:
-    csv_upload_button = st.button("Upload CSV")
+    csv_upload_button = st.button("📤 Upload CSV")
 
 
 # Page Navigation Logic
